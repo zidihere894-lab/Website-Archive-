@@ -3,150 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZIDDI ARCHIVER | Premium Edition</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>ZIDDI ARCHIVER | Source Unlocked</title>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        :root { --bg-color: #d1d9e6; --text-color: #31344b; --shadow-light: #ffffff; --shadow-dark: #b8b9be; --accent: #6c5ce7; }
-        .dark-mode { --bg-color: #1a1b26; --text-color: #cfcfff; --shadow-light: #24283b; --shadow-dark: #10101a; --accent: #7aa2f7; }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: 0.3s; }
-        body { background-color: var(--bg-color); color: var(--text-color); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; overflow-x: hidden; }
-
-        .theme-btn { position: absolute; top: 20px; right: 20px; width: 45px; height: 45px; border-radius: 50%; border: none; background: var(--bg-color); color: var(--accent); cursor: pointer; box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; z-index: 1000; }
-        .theme-btn:active { box-shadow: inset 3px 3px 6px var(--shadow-dark); }
-
-        .card { background: var(--bg-color); padding: 40px; border-radius: 30px; box-shadow: 15px 15px 30px var(--shadow-dark), -15px -15px 30px var(--shadow-light); width: 100%; max-width: 500px; text-align: center; position: relative; }
-        .logo { font-family: 'Audiowide'; font-size: 1.8rem; color: var(--text-color); margin-bottom: 10px; letter-spacing: 2px; }
-
-        input { width: 100%; padding: 15px; border: none; border-radius: 15px; background: var(--bg-color); box-shadow: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light); color: var(--text-color); outline: none; margin-bottom: 20px; text-align: center; }
-
-        .btn-main { width: 100%; padding: 15px; border: none; border-radius: 50px; background: var(--bg-color); color: var(--accent); font-weight: bold; font-size: 1rem; box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .btn-main:active { box-shadow: inset 3px 3px 6px var(--shadow-dark); }
-
-        #status { margin-top: 20px; font-size: 0.85rem; font-weight: 600; min-height: 20px; }
-
-        /* Pop-up Style */
-        .pop-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 9999; }
-        .pop-card { background: var(--bg-color); padding: 30px; border-radius: 25px; width: 90%; max-width: 380px; text-align: center; box-shadow: 10px 10px 30px #000; animation: slideUp 0.4s ease; }
-        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .pop-btn { display: block; background: #25d366; color: white; padding: 12px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-top: 20px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
-        .close-pop { margin-top: 15px; font-size: 0.8rem; color: #777; cursor: pointer; font-weight: 600; }
-
-        .wa-float { position: fixed; right: 20px; bottom: 20px; background: #25d366; color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 5px 5px 15px rgba(0,0,0,0.2); }
+        :root { --bg: #0b0e14; --card: #151921; --accent: #00d2ff; --green: #00ff88; --text: #e0e6ed; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .container { background: var(--card); padding: 35px; border-radius: 30px; border: 1px solid #2d3436; width: 100%; max-width: 750px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+        .logo { font-family: 'Audiowide'; font-size: 2.2rem; color: var(--accent); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
+        input { width: 100%; padding: 18px; border-radius: 15px; border: 1px solid #3b3b3b; background: #0b0e14; color: white; outline: none; margin-bottom: 20px; font-size: 0.95rem; text-align: center; }
+        .btn-main { width: 100%; padding: 18px; border: none; border-radius: 50px; background: linear-gradient(90deg, #00d2ff, #3a7bd5); color: white; font-weight: bold; cursor: pointer; font-size: 1rem; margin-bottom: 15px; transition: 0.3s; }
+        .btn-main:hover { transform: scale(1.02); filter: brightness(1.1); }
+        #status { font-size: 0.85rem; margin-bottom: 15px; font-weight: 600; color: var(--accent); min-height: 20px; }
+        #resultBox { display: none; margin-top: 25px; text-align: left; animation: slideUp 0.5s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .code-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; background: #2d3436; padding: 10px 15px; border-radius: 10px 10px 0 0; }
+        textarea { width: 100%; height: 350px; background: #000; color: var(--green); padding: 15px; border: none; border-radius: 0 0 10px 10px; font-family: 'Courier New', monospace; font-size: 0.85rem; resize: none; overflow-y: auto; outline: none; border: 1px solid #2d3436; }
+        .btn-copy { background: var(--green); color: #000; padding: 8px 20px; border-radius: 5px; border: none; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn-copy:active { transform: scale(0.95); }
+        .wa-float { position: fixed; right: 25px; bottom: 25px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); text-decoration: none; z-index: 1000; }
     </style>
 </head>
-<body oncontextmenu="return false;">
+<body>
 
-    <button class="theme-btn" onclick="document.body.classList.toggle('dark-mode')">
-        <i class="fas fa-moon"></i>
+<div class="container">
+    <h1 class="logo">ZIDDI ARCHIVER</h1>
+    <input type="url" id="siteUrl" placeholder="Paste Website Link Here...">
+    <button class="btn-main" id="grabBtn" onclick="forceGrab()">
+        <i class="fas fa-unlock-alt"></i> FORCE ARCHIVE SOURCE
     </button>
+    <div id="status">Ready to Bypass Security...</div>
 
-    <div class="pop-overlay" id="waPop">
-        <div class="pop-card">
-            <i class="fab fa-whatsapp fa-3x" style="color: #25d366; margin-bottom: 15px;"></i>
-            <h2 style="margin-bottom: 10px;">Join Channel</h2>
-            <p style="font-size: 0.9rem; opacity: 0.8;">Premium scripts aur latest tools ke liye hamara official WhatsApp channel join karein.</p>
-            <a href="https://whatsapp.com/channel/0029Vb6Az6dFHWpzkZII9513" class="pop-btn" target="_blank">JOIN NOW</a>
-            <div class="close-pop" onclick="document.getElementById('waPop').style.display='none'">CLOSE NOW</div>
+    <div id="resultBox">
+        <div class="code-header">
+            <span style="font-size: 0.8rem; font-weight: bold;">FULL HTML SOURCE</span>
+            <button class="btn-copy" onclick="copyCode()">COPY CODE</button>
         </div>
+        <textarea id="output" readonly></textarea>
     </div>
+</div>
 
-    <div class="card">
-        <h1 class="logo">ZIDDI ARCHIVER</h1>
-        <p style="margin-bottom:25px; font-size: 0.8rem; opacity: 0.7;">Premium Source Code Extractor</p>
-        
-        <input type="url" id="urlInput" placeholder="Enter Website Link (https://...)">
-        
-        <button class="btn-main" onclick="startZiddiArchive()">
-            <i class="fas fa-bolt" id="btnIcon"></i> <span id="btnText">EXTRACT SOURCE</span>
-        </button>
+<a href="https://wa.me/923402439417" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-        <div id="status"></div>
-    </div>
+<script>
+    async function forceGrab() {
+        const urlInput = document.getElementById('siteUrl').value.trim();
+        const status = document.getElementById('status');
+        const output = document.getElementById('output');
+        const box = document.getElementById('resultBox');
+        const btn = document.getElementById('grabBtn');
 
-    <a href="https://wa.me/923402439417" class="wa-float" target="_blank">
-        <i class="fab fa-whatsapp"></i> +923402439417
-    </a>
+        if(!urlInput) return alert("Bhai, pehle link toh dalo!");
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-
-    <script>
-        // Firebase Config (Aapka Firebase)
-        const firebaseConfig = {
-            apiKey: "AIzaSyCFy28nNtxhkjfpOd0aCfYkjHUwErh1WVQ",
-            authDomain: "movie-1e6fc.firebaseapp.com",
-            projectId: "movie-1e6fc",
-            storageBucket: "movie-1e6fc.firebasestorage.app",
-            messagingSenderId: "371616954594",
-            appId: "1:371616954594:web:977d88ec7570df351246bb"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
-        async function startZiddiArchive() {
-            const url = document.getElementById('urlInput').value.trim();
-            const status = document.getElementById('status');
-            const btnText = document.getElementById('btnText');
-            
-            if(!url) return alert("Please enter a link!");
-
-            // --- PROTECT YOUR OWN SITE ---
-            if(url.includes("ziddi-new-toolkit.vercel.app")) {
-                status.style.color = "#e74c3c";
-                status.innerHTML = "<i class='fas fa-shield-alt'></i> Ziddi Site is Protected! Cannot archive.";
-                return;
-            }
-
-            status.style.color = "var(--accent)";
-            status.innerHTML = "<i class='fas fa-spider fa-spin'></i> Crawling Website...";
-            btnText.innerText = "PROCESSING...";
-
-            try {
-                const proxyUrl = "https://api.codetabs.com/v1/proxy?quest=";
-                const response = await fetch(proxyUrl + encodeURIComponent(url));
-                
-                if (!response.ok) throw new Error();
-                const html = await response.text();
-
-                const zip = new JSZip();
-                zip.file("index.html", html);
-                zip.file("ziddi_hacks.txt", "This source code was generated by ZIDDI ARCHIVER.\nTarget: " + url);
-
-                const blob = await zip.generateAsync({type: "blob"});
-                
-                // --- NEW UNIQUE NAME LOGIC ---
-                const randomID = Math.floor(1000 + Math.random() * 9000); // 4 Digit Random
-                const timeStamp = new Date().getTime(); // Timestamp for uniqueness
-                const fileName = "ziddi_source_" + randomID + "_" + timeStamp + ".zip";
-
-                const a = document.createElement("a");
-                a.href = URL.createObjectURL(blob);
-                a.download = fileName; // Unique Name assigned here
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-
-                status.style.color = "#2ecc71";
-                status.innerHTML = "<i class='fas fa-check-double'></i> Archived: " + fileName;
-                
-                // Log to Firebase
-                db.collection('archiver_logs').add({
-                    target: url,
-                    fileName: fileName,
-                    time: firebase.firestore.FieldValue.serverTimestamp()
-                });
-
-            } catch (e) {
-                status.style.color = "#e74c3c";
-                status.innerHTML = "<i class='fas fa-exclamation-circle'></i> Error: Link unreachable.";
-            }
-            btnText.innerText = "EXTRACT SOURCE";
+        // SECURITY CHECK: Protected Ziddi Website
+        if (urlInput.toLowerCase().includes("ziddi-new-toolkit.vercel.app")) {
+            status.innerHTML = "❌ Sorry Admin Not Permission";
+            status.style.color = "#ff4757";
+            box.style.display = "none";
+            return;
         }
-    </script>
+
+        status.innerHTML = "🌀 Bypassing Security & Capturing Source...";
+        status.style.color = "var(--accent)";
+        btn.innerText = "BYPASSING...";
+        box.style.display = "none";
+
+        // Advanced Multi-Engine Scraper
+        const stealthEngines = [
+            `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(urlInput)}`,
+            `https://api.allorigins.win/get?url=${encodeURIComponent(urlInput)}`,
+            `https://corsproxy.io/?${encodeURIComponent(urlInput)}`
+        ];
+
+        let grabbedHTML = "";
+        let success = false;
+
+        for (let engine of stealthEngines) {
+            try {
+                const response = await fetch(engine);
+                if (engine.includes("allorigins")) {
+                    const data = await response.json();
+                    grabbedHTML = data.contents;
+                } else {
+                    grabbedHTML = await response.text();
+                }
+
+                if (grabbedHTML && grabbedHTML.length > 100) {
+                    output.value = grabbedHTML;
+                    box.style.display = "block";
+                    status.innerHTML = "✅ SUCCESS: Source Code Captured!";
+                    status.style.color = "#00ff88";
+                    success = true;
+                    
+                    // Auto-scroll to results
+                    setTimeout(() => {
+                        box.scrollIntoView({ behavior: 'smooth' });
+                    }, 300);
+                    break;
+                }
+            } catch (e) { continue; }
+        }
+
+        if (!success) {
+            status.innerHTML = "❌ Error: This site is too secure to archive.";
+            status.style.color = "#ff4757";
+        }
+        btn.innerHTML = '<i class="fas fa-unlock-alt"></i> FORCE ARCHIVE SOURCE';
+    }
+
+    function copyCode() {
+        const text = document.getElementById('output');
+        text.select();
+        document.execCommand('copy');
+        alert("Full HTML Code Copied Successfully!");
+    }
+</script>
 </body>
 </html>
