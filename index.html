@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZIDDI ARCHIVER | Firebase Edition</title>
+    <title>ZIDDI ARCHIVER | Premium Edition</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -11,36 +11,72 @@
     <style>
         :root { --bg-color: #d1d9e6; --text-color: #31344b; --shadow-light: #ffffff; --shadow-dark: #b8b9be; --accent: #6c5ce7; }
         .dark-mode { --bg-color: #1a1b26; --text-color: #cfcfff; --shadow-light: #24283b; --shadow-dark: #10101a; --accent: #7aa2f7; }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: 0.3s; }
-        body { background-color: var(--bg-color); color: var(--text-color); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
-        .card { background: var(--bg-color); padding: 40px; border-radius: 30px; box-shadow: 15px 15px 30px var(--shadow-dark), -15px -15px 30px var(--shadow-light); width: 100%; max-width: 500px; text-align: center; }
+        body { background-color: var(--bg-color); color: var(--text-color); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; overflow-x: hidden; }
+
+        .theme-btn { position: absolute; top: 20px; right: 20px; width: 45px; height: 45px; border-radius: 50%; border: none; background: var(--bg-color); color: var(--accent); cursor: pointer; box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; z-index: 1000; }
+        .theme-btn:active { box-shadow: inset 3px 3px 6px var(--shadow-dark); }
+
+        .card { background: var(--bg-color); padding: 40px; border-radius: 30px; box-shadow: 15px 15px 30px var(--shadow-dark), -15px -15px 30px var(--shadow-light); width: 100%; max-width: 500px; text-align: center; position: relative; }
         .logo { font-family: 'Audiowide'; font-size: 1.8rem; color: var(--text-color); margin-bottom: 10px; letter-spacing: 2px; }
+
         input { width: 100%; padding: 15px; border: none; border-radius: 15px; background: var(--bg-color); box-shadow: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light); color: var(--text-color); outline: none; margin-bottom: 20px; text-align: center; }
+
         .btn-main { width: 100%; padding: 15px; border: none; border-radius: 50px; background: var(--bg-color); color: var(--accent); font-weight: bold; font-size: 1rem; box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        #status { margin-top: 20px; font-size: 0.85rem; font-weight: 600; }
+        .btn-main:active { box-shadow: inset 3px 3px 6px var(--shadow-dark); }
+
+        #status { margin-top: 20px; font-size: 0.85rem; font-weight: 600; min-height: 20px; }
+
+        /* Pop-up Style */
+        .pop-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 9999; }
+        .pop-card { background: var(--bg-color); padding: 30px; border-radius: 25px; width: 90%; max-width: 380px; text-align: center; box-shadow: 10px 10px 30px #000; animation: slideUp 0.4s ease; }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .pop-btn { display: block; background: #25d366; color: white; padding: 12px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-top: 20px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+        .close-pop { margin-top: 15px; font-size: 0.8rem; color: #777; cursor: pointer; font-weight: 600; }
+
         .wa-float { position: fixed; right: 20px; bottom: 20px; background: #25d366; color: white; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 5px 5px 15px rgba(0,0,0,0.2); }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
+
+    <button class="theme-btn" onclick="document.body.classList.toggle('dark-mode')">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <div class="pop-overlay" id="waPop">
+        <div class="pop-card">
+            <i class="fab fa-whatsapp fa-3x" style="color: #25d366; margin-bottom: 15px;"></i>
+            <h2 style="margin-bottom: 10px;">Join Channel</h2>
+            <p style="font-size: 0.9rem; opacity: 0.8;">Premium scripts aur latest tools ke liye hamara official WhatsApp channel join karein.</p>
+            <a href="https://whatsapp.com/channel/0029Vb6Az6dFHWpzkZII9513" class="pop-btn" target="_blank">JOIN NOW</a>
+            <div class="close-pop" onclick="document.getElementById('waPop').style.display='none'">CLOSE NOW</div>
+        </div>
+    </div>
 
     <div class="card">
         <h1 class="logo">ZIDDI ARCHIVER</h1>
-        <p style="margin-bottom:25px; opacity:0.8;">Firebase Connected Web Downloader</p>
-        <input type="url" id="urlInput" placeholder="https://example.com">
-        <button class="btn-main" onclick="startExtraction()">
-            <i class="fas fa-download" id="btnIcon"></i> <span id="btnText">EXTRACT & DOWNLOAD</span>
+        <p style="margin-bottom:25px; font-size: 0.8rem; opacity: 0.7;">Premium Source Code Extractor</p>
+        
+        <input type="url" id="urlInput" placeholder="Enter Website Link (https://...)">
+        
+        <button class="btn-main" onclick="startZiddiArchive()">
+            <i class="fas fa-bolt" id="btnIcon"></i> <span id="btnText">EXTRACT SOURCE</span>
         </button>
+
         <div id="status"></div>
     </div>
 
-    <a href="https://wa.me/923402439417" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i> +923402439417</a>
+    <a href="https://wa.me/923402439417" class="wa-float" target="_blank">
+        <i class="fab fa-whatsapp"></i> +923402439417
+    </a>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
     <script>
-        // --- 1. YOUR FIREBASE CONFIG ---
+        // Firebase Config
         const firebaseConfig = {
             apiKey: "AIzaSyCFy28nNtxhkjfpOd0aCfYkjHUwErh1WVQ",
             authDomain: "movie-1e6fc.firebaseapp.com",
@@ -52,67 +88,57 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // --- 2. EXTRACTION LOGIC ---
-        async function startExtraction() {
-            const url = document.getElementById('urlInput').value;
+        async function startZiddiArchive() {
+            const url = document.getElementById('urlInput').value.trim();
             const status = document.getElementById('status');
             const btnText = document.getElementById('btnText');
-            const btnIcon = document.getElementById('btnIcon');
+            
+            if(!url) return alert("Please enter a link!");
 
-            if(!url || !url.startsWith('http')) {
-                alert("Please enter a valid URL!");
+            // --- PROTECT YOUR OWN SITE ---
+            if(url.includes("ziddi-new-toolkit.vercel.app")) {
+                status.style.color = "#e74c3c";
+                status.innerHTML = "<i class='fas fa-shield-alt'></i> Ziddi Site is Protected! Cannot archive.";
                 return;
             }
 
             status.style.color = "var(--accent)";
-            status.innerHTML = "<i class='fas fa-cog fa-spin'></i> Initializing Firebase...";
+            status.innerHTML = "<i class='fas fa-spider fa-spin'></i> Crawling Website...";
             btnText.innerText = "PROCESSING...";
-            btnIcon.className = "fas fa-spinner fa-spin";
 
             try {
-                // Step 1: Fetch Content
-                status.innerHTML = "<i class='fas fa-cloud-download-alt'></i> Fetching Source Code...";
                 const proxyUrl = "https://api.codetabs.com/v1/proxy?quest=";
                 const response = await fetch(proxyUrl + encodeURIComponent(url));
                 
-                if (!response.ok) throw new Error("Fetch failed");
-                const htmlData = await response.text();
+                if (!response.ok) throw new Error();
+                const html = await response.text();
 
-                // Step 2: Create ZIP
-                status.innerHTML = "<i class='fas fa-file-archive'></i> Creating ZIP Package...";
                 const zip = new JSZip();
-                zip.file("index.html", htmlData);
-                zip.file("ziddi_hacks_info.txt", "Source extracted via ZIDDI ARCHIVER.\nTarget: " + url);
+                zip.file("index.html", html);
+                zip.file("ziddi_hacks.txt", "This source code was generated by ZIDDI ARCHIVER.");
 
                 const blob = await zip.generateAsync({type: "blob"});
-                
-                // Step 3: Trigger Download
-                const downloadLink = document.createElement("a");
-                downloadLink.href = URL.createObjectURL(blob);
-                downloadLink.download = "ziddi_source_code.zip";
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
-                document.body.removeChild(downloadLink);
-
-                // Step 4: Log to Firebase
-                status.innerHTML = "<i class='fas fa-database'></i> Logging to Firebase...";
-                await db.collection('archiver_logs').add({
-                    url: url,
-                    status: "Success",
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                });
+                const a = document.createElement("a");
+                a.href = URL.createObjectURL(blob);
+                a.download = "ziddi_source_" + Math.floor(Math.random()*1000) + ".zip";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
 
                 status.style.color = "#2ecc71";
-                status.innerHTML = "<i class='fas fa-check-circle'></i> Downloaded & Logged!";
+                status.innerHTML = "<i class='fas fa-check-double'></i> Archived Successfully!";
+                
+                // Log to Firebase
+                db.collection('archiver_logs').add({
+                    target: url,
+                    time: firebase.firestore.FieldValue.serverTimestamp()
+                });
 
-            } catch (error) {
+            } catch (e) {
                 status.style.color = "#e74c3c";
-                status.innerHTML = "<i class='fas fa-times-circle'></i> Error: Site Protected or Timeout.";
-                console.error(error);
+                status.innerHTML = "<i class='fas fa-exclamation-circle'></i> Error: Link unreachable.";
             }
-
-            btnText.innerText = "EXTRACT & DOWNLOAD";
-            btnIcon.className = "fas fa-download";
+            btnText.innerText = "EXTRACT SOURCE";
         }
     </script>
 </body>
